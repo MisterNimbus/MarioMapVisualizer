@@ -7,7 +7,6 @@ If you would like to add new blocks, modify the dictionary in the beginning of t
 ## Requirements
 - python
 - python-pygame (to create the canvas using the sprites)
-- python-pillow (to save the canvas as a png)
 
 ## Examples
 
