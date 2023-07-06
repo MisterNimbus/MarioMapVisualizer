@@ -1,6 +1,6 @@
-# String to Mario Map PNG
+# MarioMapVisualizer
 
-This function turns strings where each char corresponds to a block into a mario map png.
+This function turns strings, where each char corresponds to a block, into a mario map pngs.
 It was written in quiet a rush so it is not of the best quality.
 If you would like to add new blocks, modify the dictionary in the beginning of the code, modify the spritesheet and finally should it be necessary add new exceptions where the sprites are drawn.
 
