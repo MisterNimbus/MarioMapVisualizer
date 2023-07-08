@@ -102,7 +102,6 @@ def world_string_to_png(input_string, output_file_name="canvas"):
         y_pos = y * sprite_height
         for x in range(world_width_in_blocks):
             x_pos = x * sprite_width
-            print(x)
             tile_char = rows[y][x]
             sprite_index = mapsheet_dict[tile_char]
             canvas.blit(sprites[sprite_index], (x_pos, y_pos))
