@@ -5,7 +5,7 @@ import os
 os.environ['SDL_VIDEODRIVER'] = 'dummy'
 from PIL import Image
 
-def world_string_to_png(input_string):
+def world_string_to_png(input_string, output_file_name="canvas"):
 
     mapsheet_dict = {
 'F': 40,
@@ -43,6 +43,13 @@ def world_string_to_png(input_string):
 
     # Split the input string into rows based on newlines
     rows = input_string.split('\n')
+    
+    #filter empty rows
+    filtered_rows = []
+    for element in rows:
+        if len(element) != 0:
+            filtered_rows.append(element)
+    rows = filtered_rows
 
     # Get world size from string
     world_width_in_blocks=len(rows[0])
@@ -95,6 +102,7 @@ def world_string_to_png(input_string):
         y_pos = y * sprite_height
         for x in range(world_width_in_blocks):
             x_pos = x * sprite_width
+            print(x)
             tile_char = rows[y][x]
             sprite_index = mapsheet_dict[tile_char]
             canvas.blit(sprites[sprite_index], (x_pos, y_pos))
@@ -131,7 +139,7 @@ def world_string_to_png(input_string):
             # Piranha plant exception
             if(sprite_index == 58):
                 canvas.blit(sprites[42], (x_pos, y_pos))
-                if(rows[y][x+1]=='T'):
+                if(x+1 >= world_width_in_blocks or y+1 >= world_height_in_blocks):
                     canvas.blit(sprites[42], (x_pos, y_pos))
                 elif(rows[y][x+1]!='T'):
                     if(rows[y+1][x]=='<'):
@@ -144,4 +152,4 @@ def world_string_to_png(input_string):
                         canvas.blit(sprites[58], (x_pos, y_pos))
 
     # Save the canvas as an image
-    pygame.image.save(canvas, 'canvas.png')
+    pygame.image.save(canvas, output_file_name + '.png')
