@@ -130,8 +130,8 @@ def world_string_to_png(input_string, output_file_name="canvas"):
                     canvas.blit(sprites[61], (x_pos- (sprite_width/3), y_pos))
             
             # mushroom block exceptions
-            if(sprite_index == 46):
-                if(y+1 >= world_width_in_blocks or y-1 < 0 or x+1 >= world_width_in_blocks):
+             if(sprite_index == 46):
+                if(y+1 > world_width_in_blocks-1 or y-1 < 0 or x+1 > world_width_in_blocks-1 or x-1 < 0):
                     canvas.blit(sprites[46], (x_pos, y_pos))
                 elif(rows[y+1][x]=='-'):
                     canvas.blit(sprites[42], (x_pos, y_pos))
