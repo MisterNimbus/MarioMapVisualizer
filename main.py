@@ -108,11 +108,13 @@ def world_string_to_png(input_string, output_file_name="canvas"):
             
             # red koopa exception
             if(sprite_index == 57):
-                canvas.blit(sprites[60], (x_pos, y_pos - sprite_height))
+                if(y_pos - sprite_height >0):
+                    canvas.blit(sprites[60], (x_pos, y_pos - sprite_height))
 
             # green koopa exception
             if(sprite_index == 63):
-                canvas.blit(sprites[55], (x_pos, y_pos - sprite_height))
+                if(y_pos - sprite_height >0):
+                    canvas.blit(sprites[55], (x_pos, y_pos - sprite_height))
             
             #flag exception
             if(sprite_index == 40):
@@ -123,12 +125,15 @@ def world_string_to_png(input_string, output_file_name="canvas"):
 
             # winged red koopa exception
             if(sprite_index == 62):
-                canvas.blit(sprites[60], (x_pos, y_pos - sprite_height))
-                canvas.blit(sprites[61], (x_pos- (sprite_width/3), y_pos))
+                if(y_pos - sprite_height >0):
+                    canvas.blit(sprites[60], (x_pos, y_pos - sprite_height))
+                    canvas.blit(sprites[61], (x_pos- (sprite_width/3), y_pos))
             
             # mushroom block exceptions
             if(sprite_index == 46):
-                if(rows[y+1][x]=='-'):
+                if(y+1 >= world_width_in_blocks or y-1 < 0 or x+1 >= world_width_in_blocks):
+                    canvas.blit(sprites[46], (x_pos, y_pos))
+                elif(rows[y+1][x]=='-'):
                     canvas.blit(sprites[42], (x_pos, y_pos))
                     if(rows[y][x+1]=='-'):
                         canvas.blit(sprites[45], (x_pos, y_pos))
