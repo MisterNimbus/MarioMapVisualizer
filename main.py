@@ -166,8 +166,3 @@ def world_string_to_png(input_string, output_file_name="canvas"):
 
     # Save the canvas as an image
     pygame.image.save(canvas, output_file_name + '.png')
-
-world_string_to_png("""-
-k
--
-R""")
