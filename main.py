@@ -108,12 +108,12 @@ def world_string_to_png(input_string, output_file_name="canvas"):
             
             # red koopa exception
             if(sprite_index == 57):
-                if(y_pos - sprite_height >0):
+                if(y_pos - sprite_height >=0):
                     canvas.blit(sprites[60], (x_pos, y_pos - sprite_height))
 
             # green koopa exception
             if(sprite_index == 63):
-                if(y_pos - sprite_height >0):
+                if(y_pos - sprite_height >=0):
                     canvas.blit(sprites[55], (x_pos, y_pos - sprite_height))
             
             #flag exception
@@ -166,3 +166,8 @@ def world_string_to_png(input_string, output_file_name="canvas"):
 
     # Save the canvas as an image
     pygame.image.save(canvas, output_file_name + '.png')
+
+world_string_to_png("""-
+k
+-
+R""")
