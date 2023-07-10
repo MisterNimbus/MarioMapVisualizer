@@ -129,16 +129,25 @@ def world_string_to_png(input_string, output_file_name="canvas"):
                     canvas.blit(sprites[60], (x_pos, y_pos - sprite_height))
                     canvas.blit(sprites[61], (x_pos- (sprite_width/3), y_pos))
             
-            # mushroom block exceptions
-             if(sprite_index == 46):
-                if(y+1 > world_width_in_blocks-1 or y-1 < 0 or x+1 > world_width_in_blocks-1 or x-1 < 0):
-                    canvas.blit(sprites[46], (x_pos, y_pos))
-                elif(rows[y+1][x]=='-'):
-                    canvas.blit(sprites[42], (x_pos, y_pos))
-                    if(rows[y][x+1]=='-'):
+            # mushroom block exceptions (I know looks horrible but works, so dont touch it. Unless it stops working)
+            if(sprite_index == 46):
+                canvas.blit(sprites[42], (x_pos, y_pos))
+                if(x+1 > world_width_in_blocks-1 and rows[y][x-1]!='%'):
+                    canvas.blit(sprites[44], (x_pos, y_pos))
+                elif(x-1 < 0 and rows[y][x+1]!='%'):
+                    canvas.blit(sprites[45], (x_pos, y_pos))
+                elif(not(y+1 > world_width_in_blocks-1 or x+1 > world_width_in_blocks-1 or x-1 < 0)):
+                    if(rows[y][x+1]=='%' and rows[y][x-1]=='%'):
+                        canvas.blit(sprites[46], (x_pos, y_pos))
+                    elif(rows[y][x+1]=='%'):
+                        canvas.blit(sprites[44], (x_pos, y_pos))
+                    elif(rows[y][x-1]=='%'):
                         canvas.blit(sprites[45], (x_pos, y_pos))
                     else:
-                        canvas.blit(sprites[44], (x_pos, y_pos))
+                        canvas.blit(sprites[43], (x_pos, y_pos))
+                else:
+                    canvas.blit(sprites[46], (x_pos, y_pos))
+
             
             # Piranha plant exception
             if(sprite_index == 58):
